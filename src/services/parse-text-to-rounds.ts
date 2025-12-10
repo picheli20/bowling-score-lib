@@ -4,7 +4,7 @@
  * @returns The parsed sequence of throws
  */
 
-export const calculateScore = (sequence: string) => {
+export const parseTextToRounds = (sequence: string) => {
   sequence = sequence.toUpperCase().replace(/\s/g, ''); // Normalize
 
   // Create 10 independent arrays for each round
@@ -22,7 +22,6 @@ export const calculateScore = (sequence: string) => {
 
     // Stop processing if we've filled all 10 frames (bonus throws handled separately)
     if (frameIndex >= 10) {
-      console.log(`Note: Ignoring remaining characters after 10 frames: ${sequence.slice(i)}`);
       break;
     }
 
@@ -37,19 +36,22 @@ export const calculateScore = (sequence: string) => {
 
         // Don't move to next frame if it's the last frame
         if (frameIndex < 9) {
-          throwIndex++;
           frameIndex++;
         }
         break;
       }
       case '/': {
         if (frames[frameIndex].length === 0) {
-          throw new Error(`Invalid spare: no previous roll for round ${frameIndex + 1}, current frames: ${JSON.stringify(frames)}`);
+          throw new Error(
+            `Invalid spare: no previous roll for round ${frameIndex + 1}, current frames: ${JSON.stringify(frames)}`,
+          );
         }
         const prev: number = frames[frameIndex][frames[frameIndex].length - 1];
 
         if (prev > 9) {
-          throw new Error(`Invalid spare: previous roll exceeds 9 for round ${frameIndex + 1}, current frames: ${JSON.stringify(frames)}`);
+          throw new Error(
+            `Invalid spare: previous roll exceeds 9 for round ${frameIndex + 1}, current frames: ${JSON.stringify(frames)}`,
+          );
         }
 
         frames[frameIndex].push(10 - prev); // Append the second roll value
