@@ -20,11 +20,11 @@ export const roundsToScore = (frames: number[][]): number => {
 
   let rollIndex = 0;
 
-  frames.forEach((frame, index) => {
+  for (const [index, frame] of frames.entries()) {
     // 10th frame
     if (index === 9) {
       totalScore += frame[0] + frame[1] + (frame[2] ?? 0);
-      return;
+      continue;
     }
 
     if (frame.length === 0) {
@@ -52,7 +52,7 @@ export const roundsToScore = (frames: number[][]): number => {
       totalScore += frame[0] + frame[1];
       rollIndex += 2;
     }
-  })
+  }
 
   return totalScore;
 };

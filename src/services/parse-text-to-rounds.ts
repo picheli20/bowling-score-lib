@@ -5,7 +5,7 @@
  */
 
 export const parseTextToRounds = (sequence: string) => {
-  sequence = sequence.toUpperCase().replace(/\s/g, ''); // Normalize
+  sequence = sequence.toUpperCase().replaceAll(/\s/g, ''); // Normalize
 
   // Create 10 independent arrays for each round
   const frames: number[][] = Array.from({ length: 10 }, () => []);
@@ -13,10 +13,9 @@ export const parseTextToRounds = (sequence: string) => {
   let frameIndex: number = 0;
   let throwIndex: number = 0;
 
-  for (let i = 0; i < sequence.length; i++) {
-    const c = sequence[i];
+  for (const c of sequence) {
 
-    if (!/[0-9X\-\/]/.test(c)) {
+    if (!/[0-9X\-/]/.test(c)) {
       throw new Error(`Invalid sequence: it should be 0-9, X, / or -. Received: ${c}`);
     }
 
@@ -30,23 +29,26 @@ export const parseTextToRounds = (sequence: string) => {
     }
 
     switch (c) {
-      case 'X': {
-        frames[frameIndex].push(10);
-        throwIndex = 0;
+      case '-': {
+        frames[frameIndex].push(0);
+        throwIndex++;
 
-        // Don't move to next frame if it's the last frame
-        if (frameIndex < 9) {
+        if (throwIndex >= 2) {
+          throwIndex = 0;
           frameIndex++;
         }
+
         break;
       }
+
       case '/': {
         if (frames[frameIndex].length === 0) {
           throw new Error(
             `Invalid spare: no previous roll for round ${frameIndex + 1}, current frames: ${JSON.stringify(frames)}`,
           );
         }
-        const prev: number = frames[frameIndex][frames[frameIndex].length - 1];
+
+        const prev: number = frames[frameIndex].at(-1)!;
 
         if (prev > 9) {
           throw new Error(
@@ -65,19 +67,21 @@ export const parseTextToRounds = (sequence: string) => {
 
         break;
       }
-      case '-': {
-        frames[frameIndex].push(0);
-        throwIndex++;
 
-        if (throwIndex >= 2) {
-          throwIndex = 0;
+      case 'X': {
+        frames[frameIndex].push(10);
+        throwIndex = 0;
+
+        // Don't move to next frame if it's the last frame
+        if (frameIndex < 9) {
           frameIndex++;
         }
+
         break;
       }
 
       default: {
-        const val = parseInt(c, 10);
+        const val = Number.parseInt(c, 10);
         frames[frameIndex].push(val);
         throwIndex++;
 
@@ -85,6 +89,7 @@ export const parseTextToRounds = (sequence: string) => {
           throwIndex = 0;
           frameIndex++;
         }
+
         break;
       }
     }
