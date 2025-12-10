@@ -1,7 +1,7 @@
 {
   "name": "bowling-score-lib",
   "description": "Ten-Pin Bowling Score Calculator",
-  "version": "0.0.1",
+  "version": "0.0.2-beta3",
   "author": "Fabio Picheli",
   "bin": {
     "bowling-score-lib": "./bin/run.js"
@@ -10,7 +10,7 @@
   "dependencies": {
     "@oclif/core": "^4",
     "@oclif/plugin-help": "^6",
-    "@oclif/plugin-plugins": "^5"
+    "bowling-score-lib": "^0.0.2-beta2"
   },
   "devDependencies": {
     "@eslint/compat": "^1",
@@ -48,10 +48,6 @@
     "bin": "bowling-score-lib",
     "dirname": "bowling-score-lib",
     "commands": "./dist/commands",
-    "plugins": [
-      "@oclif/plugin-help",
-      "@oclif/plugin-plugins"
-    ],
     "topicSeparator": " ",
     "topics": {
       "hello": {
@@ -67,8 +63,7 @@
     "posttest": "npm run lint",
     "prepack": "oclif manifest && oclif readme",
     "test": "mocha --forbid-only \"test/**/*.test.ts\"",
-    "version": "oclif readme && git add README.md",
-    "test-script": "npx tsx test-script.ts"
+    "version": "oclif readme && git add README.md"
   },
   "types": "dist/index.d.ts"
 }
