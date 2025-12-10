@@ -10,7 +10,7 @@
   "dependencies": {
     "@oclif/core": "^4",
     "@oclif/plugin-help": "^6",
-    "bowling-score-lib": "^0.0.2-beta2"
+    "bowling-score-lib": "^0.0.2"
   },
   "devDependencies": {
     "@eslint/compat": "^1",
