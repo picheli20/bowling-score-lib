@@ -1,7 +1,7 @@
 {
   "name": "bowling-score-lib",
   "description": "Ten-Pin Bowling Score Calculator",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "author": "Fabio Picheli",
   "bin": {
     "bowling-score-lib": "./bin/run.js"

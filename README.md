@@ -20,7 +20,7 @@ $ npm install -g bowling-score-lib
 $ bowling-score-lib COMMAND
 running command...
 $ bowling-score-lib (--version)
-bowling-score-lib/0.0.0 darwin-arm64 node-v22.12.0
+bowling-score-lib/0.0.1 darwin-arm64 node-v22.12.0
 $ bowling-score-lib --help [COMMAND]
 USAGE
   $ bowling-score-lib COMMAND
@@ -65,7 +65,7 @@ EXAMPLES
   hello friend from oclif! (./src/commands/hello/index.ts)
 ```
 
-_See code: [src/commands/hello/index.ts](https://github.com/bowling-score-lib/bowling-score-lib/blob/v0.0.0/src/commands/hello/index.ts)_
+_See code: [src/commands/hello/index.ts](https://github.com/bowling-score-lib/bowling-score-lib/blob/v0.0.1/src/commands/hello/index.ts)_
 
 ## `bowling-score-lib hello world`
 
@@ -83,7 +83,7 @@ EXAMPLES
   hello world! (./src/commands/hello/world.ts)
 ```
 
-_See code: [src/commands/hello/world.ts](https://github.com/bowling-score-lib/bowling-score-lib/blob/v0.0.0/src/commands/hello/world.ts)_
+_See code: [src/commands/hello/world.ts](https://github.com/bowling-score-lib/bowling-score-lib/blob/v0.0.1/src/commands/hello/world.ts)_
 
 ## `bowling-score-lib help [COMMAND]`
 
