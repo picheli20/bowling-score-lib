@@ -1,9 +1,1 @@
-{
-  "root":[
-    "./src/index.ts",
-    "./src/commands/hello/index.ts",
-    "./src/commands/hello/world.ts",
-    "./src/services/parse-text-to-rounds.ts"
-  ],
-  "version":"5.9.3"
-}
+{"root":["./src/index.ts","./src/commands/score.ts","./src/services/parse-text-to-rounds.ts","./src/services/rounds-to-score.ts"],"version":"5.9.3"}
