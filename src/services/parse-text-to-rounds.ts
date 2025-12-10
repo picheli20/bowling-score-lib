@@ -30,12 +30,11 @@ export const calculateScore = (sequence: string) => {
       throw new Error(`Invalid sequence: too many throws for frame ${frameIndex + 1}`);
     }
 
-    console.log(`Processing throw ${i + 1}: ${c} | Current frame: ${frameIndex + 1} | Current throw: ${throwIndex}`);
-
     switch (c) {
       case 'X': {
         frames[frameIndex].push(10);
         throwIndex = 0;
+
         // Don't move to next frame if it's the last frame
         if (frameIndex < 9) {
           throwIndex++;
@@ -59,17 +58,16 @@ export const calculateScore = (sequence: string) => {
           throwIndex++;
         } else {
           throwIndex = 0;
+          frameIndex++;
         }
 
-        frameIndex++;
         break;
       }
       case '-': {
         frames[frameIndex].push(0);
         throwIndex++;
 
-        // Move to next round after 2 throws and it's not the last frame
-        if (throwIndex >= 2 && frameIndex < 9) {
+        if (throwIndex >= 2) {
           throwIndex = 0;
           frameIndex++;
         }
@@ -81,8 +79,7 @@ export const calculateScore = (sequence: string) => {
         frames[frameIndex].push(val);
         throwIndex++;
 
-        // Move to next round after 2 throws and it's not the last frame
-        if (throwIndex >= 2 && frameIndex < 9) {
+        if (throwIndex >= 2) {
           throwIndex = 0;
           frameIndex++;
         }
